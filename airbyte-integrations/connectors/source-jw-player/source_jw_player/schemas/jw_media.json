@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "created": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "number"
+    },
+    "error_message": {
+      "type": ["null", "string"]
+    },
+    "hosting_type": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "last_modified": {
+      "type": "string"
+    },
+    "media_type": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "permalink": {
+          "type": "string"
+        },
+        "publish_start_date": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "author",
+        "category",
+        "description",
+        "permalink",
+        "publish_start_date",
+        "tags",
+        "title"
+      ]
+    },
+    "relationships": {
+      "type": "object"
+    },
+    "status": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "created",
+    "duration",
+    "error_message",
+    "hosting_type",
+    "id",
+    "last_modified",
+    "media_type",
+    "metadata",
+    "relationships",
+    "status",
+    "type"
+  ]
+}

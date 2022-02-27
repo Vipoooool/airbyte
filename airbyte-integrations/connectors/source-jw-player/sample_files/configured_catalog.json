@@ -1,0 +1,145 @@
+{
+  "streams": [
+    {
+      "sync_mode": "full_refresh",
+      "destination_sync_mode": "overwrite",
+      "stream": {
+        "name": "jw_media",
+        "json_schema": {
+          "type": "object",
+          "properties": {
+            "created": {
+              "type": "string"
+            },
+            "duration": {
+              "type": "number"
+            },
+            "error_message": {
+              "type": "null"
+            },
+            "external_id": {
+              "type": "null"
+            },
+            "hosting_type": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "last_modified": {
+              "type": "string"
+            },
+            "media_type": {
+              "type": "string"
+            },
+            "metadata": {
+              "type": "object",
+              "properties": {
+                "author": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "custom_params": {
+                  "type": "object"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "language": {
+                  "type": "null"
+                },
+                "permalink": {
+                  "type": "string"
+                },
+                "protection_rule_key": {
+                  "type": "null"
+                },
+                "publish_end_date": {
+                  "type": "null"
+                },
+                "publish_start_date": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ]
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "author",
+                "category",
+                "custom_params",
+                "description",
+                "language",
+                "permalink",
+                "protection_rule_key",
+                "publish_end_date",
+                "publish_start_date",
+                "tags",
+                "title"
+              ]
+            },
+            "mime_type": {
+              "type": "null"
+            },
+            "relationships": {
+              "type": "object"
+            },
+            "schema": {
+              "type": "null"
+            },
+            "source_url": {
+              "type": "null"
+            },
+            "status": {
+              "type": "string"
+            },
+            "trim_in_point": {
+              "type": "null"
+            },
+            "trim_out_point": {
+              "type": "null"
+            },
+            "type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "created",
+            "duration",
+            "error_message",
+            "external_id",
+            "hosting_type",
+            "id",
+            "last_modified",
+            "media_type",
+            "metadata",
+            "mime_type",
+            "relationships",
+            "schema",
+            "source_url",
+            "status",
+            "trim_in_point",
+            "trim_out_point",
+            "type"
+          ]
+        },
+        "supported_sync_modes": [
+          "full_refresh"
+        ]
+      }
+    }
+  ]
+}

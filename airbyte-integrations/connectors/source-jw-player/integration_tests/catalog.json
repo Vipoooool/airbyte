@@ -1,0 +1,101 @@
+{
+  "streams": [
+    {
+      "name": "jw_media",
+      "json_schema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created": {
+            "type": "string"
+          },
+          "last_modified": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "relationships": {
+            "type": "object"
+          },
+          "protection_rule": {
+            "type": "object"
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "author": {
+                "type": "string"
+              },
+              "duration": {
+                "type": "number"
+              },
+              "permalink": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string"
+              },
+              "publish_start_date": {
+                "type": "date-time"
+              },
+              "publish_end_date": {
+                "type": "date-time"
+              },
+              "tags": {
+                "type": "array of strings"
+              },
+              "language": {
+                "type": "string"
+              },
+              "custom_params": {
+                "type": "object"
+              }
+            }
+          },
+          "status": {
+            "type": "string"
+          },
+          "media_type": {
+            "type": "string"
+          },
+          "hosting_type": {
+            "type": "string"
+          },
+          "mime_type": {
+            "type": "object"
+          },
+          "error_message": {
+            "type": "object"
+          },
+          "duration": {
+            "type": "string"
+          },
+          "trim_in_point": {
+            "type": "object"
+          },
+          "trim_out_point": {
+            "type": "object"
+          }
+        }
+      },
+      "supported_sync_modes": ["full_refresh"]
+    },
+    {
+      "name": "jw_tag",
+      "json_schema": {},
+      "supported_sync_modes": ["full_refresh"]
+    }
+  ]
+}
