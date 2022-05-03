@@ -15,11 +15,10 @@ class JwPlayerStream(HttpStream):
 
     primary_key = None
 
-    def __init__(self, api_secret: str, site_id: str, media_id: str, **kwargs):
+    def __init__(self, api_secret: str, site_id: str, **kwargs):
         super().__init__(**kwargs)
         self.api_secret = api_secret
         self.site_id = site_id
-        self.media_id = media_id
 
     def request_params(
         self,
@@ -39,12 +38,16 @@ class JwPlayerStream(HttpStream):
         TODO: Override this method to define how a response is parsed.
         :return an iterable containing each record in the response
         """
-        yield response.json()
+        return [response.json()]
 
     def next_page_token(self, response: requests.Response) -> Optional[Mapping[str, Any]]:
         return None
 
 class JwMedia(JwPlayerStream):
+
+    def __init__(self, api_secret: str, site_id: str, media_id: str, **kwargs):
+        super().__init__(api_secret, site_id, **kwargs)
+        self.media_id = media_id
     
     def request_headers(self, stream_state: Mapping[str, Any], stream_slice: Mapping[str, Any] = None, next_page_token: Mapping[str, Any] = None) -> Mapping[str, Any]:
         return {
@@ -57,8 +60,8 @@ class JwMedia(JwPlayerStream):
 
 class JwTag(JwPlayerStream):
 
-    def __init__(self, api_secret: str, site_id: str, media_id: str, tag_name: str, **kwargs):
-        super().__init__(api_secret, site_id, media_id, **kwargs)
+    def __init__(self, api_secret: str, site_id: str, tag_name: str, **kwargs):
+        super().__init__(api_secret, site_id, **kwargs)
         self.tag_name = tag_name
         
     def path(self, **kwargs) -> str:
@@ -73,16 +76,17 @@ class JwTag(JwPlayerStream):
 
     @property
     def http_method(self) -> str:
-        return "PUT"
+        return "PUT" 
 
-    def request_body_data(
-        self,
-        stream_state: Mapping[str, Any],
-        stream_slice: Mapping[str, Any] = None,
-        next_page_token: Mapping[str, Any] = None,
-    ) -> Optional[Union[Mapping, str]]:
-        
-        return {"tag": self.tag_name}   
+    def request_body_json(self, **kwargs) -> Optional[Mapping]:
+        return {"tag": self.tag_name}
+
+    def parse_response(self, response: requests.Response, **kwargs) -> Iterable[Mapping]:
+        """
+        TODO: Override this method to define how a response is parsed.
+        :return an iterable containing each record in the response
+        """
+        return [{"Status": response.status_code, "tag": self.tag_name}]
 
 
 # Source
@@ -102,4 +106,8 @@ class SourceJwPlayer(AbstractSource):
 
         :param config: A Mapping of the user input configuration as defined in the connector spec.
         """
-        return [JwMedia(config.get('api_secret'), config.get('site_id'), config.get('media_id'))]#, JwTag(config.get('api_secret'), config.get('site_id'), config.get('media_id'), config.get('tag_name'))]
+        jwp_streams = [
+            JwMedia(config.get('api_secret'), config.get('site_id'), config.get('media_id')),
+            JwTag(config.get('api_secret'), config.get('site_id'), config.get('tag_name'))
+            ]
+        return jwp_streams

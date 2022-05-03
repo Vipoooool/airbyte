@@ -1,0 +1,145 @@
+{
+  "documentationUrl": "https://docs.airbyte.io/integrations/sources/youtube-stats",
+  "connectionSpecification": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Youtube Analytics Spec",
+    "type": "object",
+    "required": [
+      "credentials",
+      "params"
+    ],
+    "properties": {
+      "params":{
+        "title": "Query parameters",
+        "type": "object",
+        "required": [
+          "ids",
+          "startDate",
+          "endDate",
+          "metrics"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "ids": {
+            "type": "string",
+            "title": "IDS:",
+            "description": "To request data for a YouTube channel, set the ids parameter value to either channel==MINE or channel==CHANNEL_ID, where CHANNEL_ID identifies the currently authenticated user's YouTube channel. To request data for a YouTube content owner, set the ids parameter value to contentOwner==OWNER_NAME, where OWNER_NAME is the content owner ID for the user.",
+            "const": "channel==MINE"
+          },
+          "startDate": {
+            "type": "string",
+            "title": "startDate:YYYY-MM-DD ",
+            "description": "Starting date from when you want to generate report from."
+    
+          },
+          "endDate": {
+            "type": "string",
+            "title": "endDate:YYYY-MM-DD",
+            "description": "The API response contains data up until the last day for which all metrics in the query are available at the time of the query. So, for example, if the request specifies an end date of July 5, 2017, and values for all of the requested metrics are only available through July 3, 2017, that will be the last date for which data is included in the response. (That is true even if data for some of the requested metrics is available for July 4, 2017.)"
+    
+          },
+          "metrics": {
+            "type": "string",
+            "title": "metrics:",
+            "description": "A comma-separated list of YouTube Analytics metrics, such as views or likes,dislikes. See the documentation for channel reports or content owner reports for a list of the reports that you can retrieve and the metrics available in each report. (The Metrics document contains definitions for all of the metrics.)",
+            "const": "views,likes,comments,estimatedMinutesWatched,annotationClickThroughRate"
+    
+          },
+          "filters": {
+            "type": "string",
+            "title": "filters:",
+            "description": "If a request uses multiple filters, join them together with a semicolon (;), and the returned result table will satisfy both filters. For example, a filters parameter value of video==dMH0bHeiRNg;country==IT restricts the result set to include data for the given video in Italy."
+    
+          },
+          "dimensions": {
+            "type": "string",
+            "title": "dimensions:",
+            "description": "A comma-separated list of YouTube Analytics dimensions, such as video or ageGroup,gender. See the documentation for channel reports or content owner reports for a list of the reports that you can retrieve and the dimensions used for those reports. (The Dimensions document contains definitions for all of the dimensions.)"   
+          }
+        }
+      },
+      "credentials": {
+        "type": "object",
+        "oneOf": [
+          {
+            "title": "Authenticate via Google (OAuth)",
+            "type": "object",
+            "required": [
+              "client_id",
+              "client_secret",
+              "refresh_token"
+            ],
+            "properties": {
+              "auth_type": {
+                "type": "string",
+                "const": "Client"
+              },
+              "client_id": {
+                "title": "Client ID",
+                "type": "string",
+                "description": "The Client ID of your Google Sheets developer application.",
+                "airbyte_secret": true
+              },
+              "client_secret": {
+                "title": "Client Secret",
+                "type": "string",
+                "description": "The Client Secret of your Google Sheets developer application.",
+                "airbyte_secret": true
+              },
+              "refresh_token": {
+                "title": "Refresh Token",
+                "type": "string",
+                "description": "The token for obtaining new access token.",
+                "airbyte_secret": true
+              }
+            }
+          },
+          {
+            "title": "Service Account Key Authentication",
+            "type": "object",
+            "required": [
+              "service_account_info"
+            ],
+            "properties": {
+              "auth_type": {
+                "type": "string",
+                "const": "Service"
+              },
+              "service_account_info": {
+                "type": "string",
+                "title": "Service Account Information.",
+                "description": "The JSON key of the service account to use for authorization.",
+                "airbyte_secret": true,
+                "examples": [
+                  "{ \"type\": \"service_account\", \"project_id\": YOUR_PROJECT_ID, \"private_key_id\": YOUR_PRIVATE_KEY, ... }"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "authSpecification": {
+    "auth_type": "oauth2.0",
+    "oauth2Specification": {
+      "rootObject": [
+        "credentials",
+        0
+      ],
+      "oauthFlowInitParameters": [
+        [
+          "client_id"
+        ],
+        [
+          "client_secret"
+        ]
+      ],
+      "oauthFlowOutputParameters": [
+        [
+          "refresh_token"
+        ]
+      ]
+    }
+  }
+}

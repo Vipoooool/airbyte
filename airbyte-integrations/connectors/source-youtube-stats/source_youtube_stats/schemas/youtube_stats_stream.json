@@ -1,0 +1,177 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "columnHeaders": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "columnType": {
+              "type": "string"
+            },
+            "dataType": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "columnType",
+            "dataType"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "columnType": {
+              "type": "string"
+            },
+            "dataType": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "columnType",
+            "dataType"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "columnType": {
+              "type": "string"
+            },
+            "dataType": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "columnType",
+            "dataType"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "columnType": {
+              "type": "string"
+            },
+            "dataType": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "columnType",
+            "dataType"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "columnType": {
+              "type": "string"
+            },
+            "dataType": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "columnType",
+            "dataType"
+          ]
+        }
+      ]
+    },
+    "rows": {
+      "type": "array",
+      "items": [
+        {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "rows"
+  ]
+}

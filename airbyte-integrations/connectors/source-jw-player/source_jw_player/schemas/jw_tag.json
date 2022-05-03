@@ -4,13 +4,6 @@
     "properties": {
       "id": {
         "type": ["null", "string"]
-      },
-      "name": {
-        "type": ["null", "string"]
-      },
-      "signup_date": {
-        "type": ["null", "string"],
-        "format": "date-time"
       }
     }
   }
